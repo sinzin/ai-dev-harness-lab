@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run check:docs)",
+      "Bash(npm run check:docs -- --scope=design)",
+      "Bash(npm run check:approval)",
+      "Bash(npm run check:owner -- claude)"
+    ],
+    "deny": [
+      "Edit(/site/**)",
+      "Edit(/tests/**)",
+      "Edit(/reviews/**)",
+      "Edit(/handoff/to-claude/**)",
+      "Edit(/scripts/**)",
+      "Edit(/docs/templates/**)",
+      "Edit(/docs/00-workflow.md)",
+      "Edit(/docs/harness-map.md)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/AGENTS.md)",
+      "Edit(/**/AGENTS.md)",
+      "Edit(/README.md)",
+      "Edit(/package.json)",
+      "Edit(/.gitignore)",
+      "Edit(/.claude/**)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-check.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}
